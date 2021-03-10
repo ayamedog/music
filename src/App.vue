@@ -1,32 +1,45 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="app">
+      <nav-bar>
+        <div slot="logo">
+          <img src="~assets/images/logo.png" alt="music">
+          <img src="~assets/images/logotext.png" alt="MUSIC">
+        </div>
+      </nav-bar>
+      <router-view></router-view>
+      <search-bar></search-bar>
     </div>
-    <router-view/>
+    <vuefooter></vuefooter>
   </div>
 </template>
 
+<script>
+import axios from "axios";
+import NavBar from "@/components/common/navbar/NavBar";
+import SearchBar from "@/components/content/SearchBar";
+import login from "@/components/common/login/login";
+import vuefooter from "@/components/common/footer/vuefooter";
+export default {
+  name: 'app',
+  components: {
+    SearchBar,
+    NavBar,
+    vuefooter
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import "assets/css/base.css";
+body{
+  padding-top: 70px;
+  background: #ababab;
+  background: url("~assets/images/bg.jpg") fixed no-repeat;
+  background-size: cover;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.app{
+  width: 1350px;
+  margin: 0 auto;
 }
 </style>
