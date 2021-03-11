@@ -113,7 +113,6 @@ export default {
           style = style = `translateX(0) scale(0.55)`;
           zIndex = 9;
       }
-      console.log(length)
       return {'transform': style,'zIndex':zIndex}
     },
     rightClick() {

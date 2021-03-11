@@ -20,7 +20,6 @@ export default {
     })
     .then(res => {
       this.playlists = res.data.result;
-      console.log(res);
     })
     .catch(err => {
       console.log(err);

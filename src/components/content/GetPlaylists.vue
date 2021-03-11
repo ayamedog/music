@@ -10,7 +10,8 @@
           <p class="playlist-song-name">{{item.name}}</p>
         </router-link>
       </div>
-      <slot></slot>
+      <slot name="loading"></slot>
+      <slot name="page"></slot>
     </div>
   </div>
 

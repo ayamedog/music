@@ -1,8 +1,8 @@
 <template>
   <div id="mv">
     <h2 class="mv-title">M V</h2>
-    <div class="mv-box">
-      <div class="mv-options">
+    <mv-count :mv-data="mvData" :isshow="isShow">
+      <div class="mv-options" slot="mv-options">
         <ul>
           <li v-for="(item, index) in area" @click="areaClick(item)" :class="{active: areaActive === item}">{{item}}</li>
         </ul>
@@ -13,11 +13,7 @@
           <li v-for="(item, index) in order" @click="orderClick(item)" :class="{active: orderActive === item}">{{item}}</li>
         </ul>
       </div>
-      <mv-count :mvData="mvData" v-if="isShow"></mv-count>
-      <div class="loading" v-if="!isShow">
-        <img src="~assets/images/loading.png" alt="">
-      </div>
-      <div class="mv-page">
+      <div class="mv-page" slot="mv-page">
         <el-pagination
             background
             layout="prev, pager, next"
@@ -27,7 +23,11 @@
         >
         </el-pagination>
       </div>
-    </div>
+      <div class="loading" v-if="!isShow" slot="mv-loading">
+        <img src="~assets/images/loading.png" alt="">
+      </div>
+    </mv-count>
+
   </div>
 </template>
 
@@ -147,7 +147,7 @@ export default {
     padding-top: 20px;
   }
 
-  #mv .mv-title{
+  .mv-title{
     color: #fff;
     background: #fa2800;
     padding: 10px 20px;
@@ -155,38 +155,6 @@ export default {
     width: 150px;
     text-align: center;
     margin-bottom: 20px;
-  }
-
-  #mv .mv-box{
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 20px 50px 50px 50px;
-    background: rgba(255,255,255,0.6);
-    border-radius: 15px;
-    margin-bottom: 30px;
-  }
-
-  .mv-options ul{
-    width: 100%;
-    height: 30px;
-    padding-left: 20px;
-    margin-bottom: 20px;
-  }
-  .mv-options li {
-    list-style: none;
-    float: left;
-    color: #1e272e;
-    line-height: 30px;
-    margin-right: 20px;
-    padding: 0 10px;
-    cursor: pointer;
-  }
-  .mv-options li.active{
-    color: #fff;
-    background: #fa2800;
-    border-radius: 15px;
-
   }
 
   .mv-page{

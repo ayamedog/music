@@ -27,7 +27,14 @@ export function recoPlaylists(config) {
   })
   return recolistsInstance(config)
 }
-
+//首页 获取推荐mv
+export function recoMv(config) {
+  const recoMvInstance = axios.create({
+    baseURL: 'http://localhost:3000/personalized/mv',
+    timeout: 10000
+  })
+  return recoMvInstance(config)
+}
 // mv页获取mv
 export function mv(config) {
   const mvInstance = axios.create({

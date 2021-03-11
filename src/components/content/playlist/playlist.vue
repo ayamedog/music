@@ -1,7 +1,7 @@
 <template>
   <div id="playlist">
     <div  id="playlist-nav">
-      <div class="cur-cat" @click="isShow = !isShow">{{cat}}<i class="fa fa-chevron-down"></i></div>
+      <div class="cur-cat" @click="isShow = !isShow">{{cat}}<i class="fa fa-chevron-down" :class="{active: isShow}"></i></div>
       <div class="playlist-hot">
         <ul>
           <span>热门标签:</span>
@@ -23,7 +23,9 @@
       </ul>
     </div>
     <div id="playlist-cont">
-      <get-playlists :playlists="playlists" :class="{isloading: isloading}"><div class="mv-page">
+      <get-playlists :playlists="playlists" :class="{isloading: isloading}">
+        <loading slot="loading" :class="{isloading: !isloading}"></loading>
+        <div class="mv-page" slot="page">
         <el-pagination
             background
             layout="prev, pager, next"
@@ -32,7 +34,8 @@
             @current-change="pageClick"
         >
         </el-pagination>
-      </div></get-playlists>
+      </div>
+      </get-playlists>
     </div>
   </div>
 </template>
@@ -41,6 +44,7 @@
 import axios from "axios";
 import {playlistHot,playlistGet,playlistCatlist} from "@/network/request";
 import GetPlaylists from "@/components/content/GetPlaylists";
+import loading from "@/components/common/loading/loading";
 
 export default {
   name: "playlist",
@@ -157,7 +161,8 @@ export default {
     }
   },
   components: {
-    GetPlaylists
+    GetPlaylists,
+    loading
   }
 }
 </script>
@@ -190,10 +195,10 @@ export default {
     top: 50%;
     transform: translateY(-50%);
     right: 10px;
-    transition: all .3s linear;
+    transition: all .2s linear;
   }
   #playlist-nav .cur-cat .fa-chevron-down.active{
-    transform: rotate(180deg);
+    transform: translateY(-50%) rotate(-180deg);
   }
 
   #playlist-nav .playlist-hot{
@@ -315,6 +320,9 @@ export default {
   }
 
   ::v-deep .isloading .playlist-songs{
+    display: none;
+  }
+  ::v-deep #loading.isloading{
     display: none;
   }
 </style>

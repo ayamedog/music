@@ -1,17 +1,22 @@
 <template>
-  <div class="mv-cont">
-    <div class="mv-item" v-for="(item, index) in mvData">
-      <div class="mv-pic">
-        <img :src='item.cover' alt="">
-        <div class="mv-info">
-          <span class="mv-artist">{{item.artistName}}</span>
-          <span class="mv-duration">{{mvDuration(item.duration)}}</span>
+  <div class="mv-box">
+    <slot name="mv-options"></slot>
+    <div class="mv-cont">
+      <div class="mv-item" v-if="isshow" v-for="(item, index) in mvData">
+        <div class="mv-pic">
+          <img :src='item.cover || item.picUrl' alt="">
+          <div class="mv-info">
+            <span class="mv-artist">{{item.artistName}}</span>
+            <span class="mv-duration">{{mvDuration(item.duration)}}</span>
+          </div>
+          <i class="fa fa-youtube-play"></i>
         </div>
-        <i class="fa fa-youtube-play"></i>
+        <span class="mv-playcount"><i class="fa fa-youtube-play"></i>{{mvPlayCount(item.playCount)}}</span>
+        <div class="mv-name"><p>{{item.name}}</p></div>
       </div>
-      <span class="mv-playcount"><i class="fa fa-youtube-play"></i>{{mvPlayCount(item.playCount)}}</span>
-      <div class="mv-name"><p>{{item.name}}</p></div>
     </div>
+    <slot name="mv-loading"></slot>
+    <slot name="mv-page"></slot>
   </div>
 </template>
 
@@ -43,12 +48,46 @@ export default {
     },
   },
   props: {
-    mvData: [String,Number,Array]
+    mvData: [String,Number,Array],
+    isshow: {
+      default: true
+    }
   }
 }
 </script>
 
 <style scoped>
+.mv-box{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 30px 50px 20px 50px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.mv-options ul{
+  width: 100%;
+  height: 30px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.mv-options li {
+  list-style: none;
+  float: left;
+  color: #1e272e;
+  line-height: 30px;
+  margin-right: 20px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.mv-options li.active{
+  color: #fff;
+  background: #fa2800;
+  border-radius: 15px;
+
+}
 .mv-cont{
   display: flex;
   flex-wrap: wrap;
