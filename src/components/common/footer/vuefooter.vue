@@ -4,7 +4,6 @@
       <h3 class="footer-title">MUSIC</h3>
       <p class="footer-text">music</p>
       <a href="https://github.com/ayamedog/music" class="github"><i class="fa fa-github"></i></a>
-
     </div>
     <div class="footer-bottom">
       <p class="bottom-text">by <a href="https://github.com/ayamedog/music">臭DD</a></p>

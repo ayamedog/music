@@ -1,18 +1,18 @@
 <template>
 <div id="home">
   <banner></banner>
-  <recommend-songs></recommend-songs>
+  <reco-playlist></reco-playlist>
 </div>
 </template>
 
 <script>
 import Banner from "@/components/content/home/Banner";
-import RecommendSongs from "@/components/content/home/RecommendSongs";
+import RecoPlaylist from "@/components/content/home/RecoPlaylist";
 
 export default {
   name: "Home",
   components: {
-    RecommendSongs,
+    RecoPlaylist,
     Banner
   }
 }

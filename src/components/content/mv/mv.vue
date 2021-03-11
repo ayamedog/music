@@ -112,7 +112,6 @@ export default {
     pageClick(c) {
       this.currentPage = c
       window.scrollTo(0,0);
-      console.log(document.body.scrollTop)
       this.isShow = !this.isShow
       let limit = this.limit
       // if(c == this.page){

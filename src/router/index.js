@@ -6,6 +6,7 @@ const hello = () => import('@/components/content/hello')
 const login = () => import('@/components/common/login/login')
 const home = () => import('@/components/content/home/Home')
 const mv = () => import('@/components/content/mv/mv')
+const playlist = () => import('@/components/content/playlist/playlist')
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,10 @@ const routes = [
   {
     path: '/mv',
     component: mv
+  },
+  {
+    path: '/playlist',
+    component: playlist
   }
 ]
 

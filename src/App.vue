@@ -7,7 +7,9 @@
           <img src="~assets/images/logotext.png" alt="MUSIC">
         </div>
       </nav-bar>
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
       <search-bar></search-bar>
     </div>
     <vuefooter></vuefooter>
