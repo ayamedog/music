@@ -8,7 +8,7 @@
       <!--导航-->
       <ul id="nav-cont">
         <li><router-link to="/home" tag="a">首页</router-link></li>
-        <li><router-link to="/rank" tag="a">排行榜</router-link></li>
+        <li><router-link to="/ranking" tag="a">排行榜</router-link></li>
         <li><router-link to="/playlist" tag="a">歌单</router-link></li>
         <li><router-link to="/mv" tag="a">M V</router-link></li>
         <li><router-link to="/my" tag="a">我的音乐</router-link></li>

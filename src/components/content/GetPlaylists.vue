@@ -2,10 +2,13 @@
   <div class="playlist-box1">
     <div class="playlist-cont">
       <div class="playlist-songs" v-for="(item, index) in playlists">
-        <router-link to="/123" tag="a">
+        <router-link :to="{path: '/playlist-details/url',query:{id: item.id}}" tag="a">
           <div class="playlist-song-pic">
             <span class="play-count">{{playCount(item.playCount)}}</span>
-            <img :src='item.picUrl || item.coverImgUrl' alt="">
+<!--            <img :src='item.picUrl || item.coverImgUrl' alt="">-->
+            <!--            <img :src='item.picUrl+"?param=158y158" || item.coverImgUrl+"?param=158y158"' alt="">-->
+<!--            <img :src="item.picUrl+'?param=158y158' || item.coverImgUrl+'?param=158y158'" alt="">-->
+            <img :src="(item.picUrl || item.coverImgUrl)+'?param=158y158'" alt="">
           </div>
           <p class="playlist-song-name">{{item.name}}</p>
         </router-link>
@@ -35,6 +38,9 @@ export default {
         }
       }
     }
+  },
+  methods: {
+
   }
 }
 </script>
@@ -71,7 +77,7 @@ export default {
     font-size: 14px;
     border-radius: 5px;
     color: #fff;
-    background: rgba(0,0,0,1);
+    background: rgba(0,0,0,0.6);
   }
   .playlist-songs .playlist-song-pic img{
     border-radius: 5px;

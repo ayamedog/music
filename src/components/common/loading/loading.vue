@@ -1,12 +1,12 @@
 <template>
-  <div class="loading" v-if="!isShow" id="loading">
+  <div class="loading"  id="loading">
     <img src="~assets/images/loading.png" alt="">
   </div>
 </template>
 
 <script>
 export default {
-name: "loading"
+  name: "loading"
 }
 </script>
 

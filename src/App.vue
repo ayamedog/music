@@ -7,7 +7,7 @@
           <img src="~assets/images/logotext.png" alt="MUSIC">
         </div>
       </nav-bar>
-      <keep-alive>
+      <keep-alive exclude="mvDetails,playlistDetails">
         <router-view></router-view>
       </keep-alive>
       <search-bar></search-bar>

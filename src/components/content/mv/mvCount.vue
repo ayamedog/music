@@ -2,7 +2,7 @@
   <div class="mv-box">
     <slot name="mv-options"></slot>
     <div class="mv-cont">
-      <div class="mv-item" v-if="isshow" v-for="(item, index) in mvData">
+      <div class="mv-item" v-if="isshow" v-for="(item, index) in mvData" @click="mvDetails(item.id)">
         <div class="mv-pic">
           <img :src='item.cover || item.picUrl' alt="">
           <div class="mv-info">
@@ -51,6 +51,15 @@ export default {
     mvData: [String,Number,Array],
     isshow: {
       default: true
+    }
+  },
+  methods: {
+    mvDetails(id) {
+      this.$store.commit('mvidUpdate',id)
+      this.$router.push({
+        path: '/mv-detail/url',
+        query:{id: id}
+      }).catch(err => err)
     }
   }
 }

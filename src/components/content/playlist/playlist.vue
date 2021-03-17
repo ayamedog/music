@@ -53,7 +53,7 @@ export default {
     .then(res => {
       this.categories = res.data.categories;
       this.sub= res.data.sub
-      console.log(res);
+
     }).catch(err => {
       console.log(err);
     })
@@ -61,7 +61,7 @@ export default {
     playlistHot()
     .then(res => {
       this.playlistHot = res.data.tags
-      console.log(res);
+
     }).catch(err => {
     console.log(err);
     })
@@ -74,7 +74,7 @@ export default {
     .then( res => {
       this.playlists = res.data.playlists
       this.page = Math.ceil( res.data.total / this.limit)
-      console.log(res);
+
     }).catch(err => {
       console.log(err);
     })
