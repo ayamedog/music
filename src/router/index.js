@@ -10,6 +10,10 @@ const playlist = () => import('@/components/content/playlist/playlist')
 const ranking = () => import('@/components/content/ranking/ranking')
 const mvDetails = () => import('@/components/content/mv/mvDetails')
 const playlistDetails = () =>import('@/components/content/playlist/playlistDetails')
+const search = () => import('@/components/content/search/search')
+const searchSongs = () => import('@/components/content/search/searchSongs')
+const searchPlaylist = () => import('@/components/content/search/searchPlaylist')
+const searchMv = () => import('@/components/content/search/searchMv')
 
 Vue.use(VueRouter)
 
@@ -46,6 +50,28 @@ const routes = [
   {
     path: '/ranking',
     component: ranking
+  },
+  {
+    path: '/search',
+    component: search,
+    children: [
+      {
+        path: '',
+        redirect: 'songs'
+      },
+      {
+        path: 'songs',
+        component: searchSongs
+      },
+      {
+        path: 'playlist',
+        component: searchPlaylist
+      },
+      {
+        path: 'mv',
+        component: searchMv
+      }
+    ]
   }
 ]
 

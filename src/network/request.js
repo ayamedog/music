@@ -1,15 +1,10 @@
 import axios from "axios";
 import {request} from "@/network/axios";
 
-//搜索  实例
-export function search(config) {
-  const searchInstance = axios.create({
-    baseURL: 'http://localhost:3000/search',
-    timeout: 10000,
-  })
-
- return searchInstance(config);
-}
+//搜索
+export const search = config => request.get('/search',config)
+//获取热搜关键字
+export const hotSearch = () => request.get('/search/hot/detail')
 
 //首页获取banner
 export const banner = config => request.get('/banner',config)
@@ -45,12 +40,14 @@ export const playlistCatlist = config => request.get('/playlist/catlist',config)
 export const playlistHot = () => request.get('/playlist/hot')
 //歌单页 获取歌单数据
 export const playlistInfo = config => request.get('/playlist/detail', config);
-//歌单页 获取歌曲详情
-export const songDetail = ids => request.get('/song/detail', {params:{ids:ids}})
 //歌单页 获取相关歌单
 export const playlistRe = id => request.get('/related/playlist',{params:{id: id}})
 //歌单页 获取歌单热门评论
-export const playlistAll = id => request.get('/comment/hot',{params:{id:id,type:2}})
+export const playlistAll = (id,limit) => request.get('/comment/hot',{params:{id:id,type:2,limit:limit}})
+// 获取歌曲详情
+export const songDetail = ids => request.get('/song/detail', {params:{ids:ids}})
+//歌单页 获取歌词
+export const songLyric = id =>request.get('/lyric',{params:{id: id}})
 
 //排行榜 获取榜单
 export const ranking = (config) => request.get('/toplist/detail',config)

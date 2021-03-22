@@ -24,7 +24,6 @@ export default {
     recoMv()
     .then(res => {
       this.mvData = res.data.result
-      console.log(res);
     }).catch(err => {
       console.log(err);
     })

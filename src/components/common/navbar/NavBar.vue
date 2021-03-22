@@ -11,7 +11,8 @@
         <li><router-link to="/ranking" tag="a">排行榜</router-link></li>
         <li><router-link to="/playlist" tag="a">歌单</router-link></li>
         <li><router-link to="/mv" tag="a">M V</router-link></li>
-        <li><router-link to="/my" tag="a">我的音乐</router-link></li>
+<!--        <li><router-link to="/my" tag="a" disabled="">我的音乐</router-link></li>-->
+        <li>我的音乐</li>
       </ul>
       <!--搜索按钮和登录按钮-->
       <div class="nav-right">
@@ -24,8 +25,6 @@
 </template>
 
 <script>
-import {search} from "@/network/request";
-
 export default {
   name: "Navbar",
   data() {
@@ -33,24 +32,6 @@ export default {
       keyword: '',
       isActive: true
     }
-  },
-  methods: {
-    searchSongs() {
-      search({
-        params: {
-          keywords: this.keyword
-        }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-
-    },
-    //点击放大镜出现搜索框
-
   }
 }
 </script>

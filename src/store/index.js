@@ -6,7 +6,14 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     mvid: '',
-    isShow: true
+    isShow: true,
+    // playList: [], //播放列表
+    // playContent: {},   //当前播放的歌曲信息
+    // current: "",  //当前歌曲的播放进度
+    songs: '', //获取歌曲
+    curSongIndex: 0,//当前播放的歌曲index
+    audioShow: true, //播放器是否显示,
+    audioEvent: ''
   },
   mutations: {
     searchClick(state) {
@@ -21,6 +28,8 @@ export default new Vuex.Store({
         searchCont.className= 'search-hide'
       }
     },
+
+
     mvidUpdate(state,mvid) {
       state.mvid = mvid
     },
@@ -29,11 +38,39 @@ export default new Vuex.Store({
     },
     changeTrue(state) {
       state.isShow = true
+    },
+    getSongs(state,songs) {
+      state.songs = songs
+    },
+    getSongsIndex(state,index) {
+      state.curSongIndex = index
+    },
+    changeIndex(state) {
+      state.curSongIndex = 0
+    },
+    indexAdd(state) {
+      state.curSongIndex++
+    },
+    indexEnd(state,index){
+      state.curSongIndex = index
+    },
+    indexCut(state) {
+      state.curSongIndex--
+    },
+    changeAudio(state) {
+      state.audioShow = !state.audioShow
+    },
+    showAudio(state) {
+      state.audioShow = false
+    },
+    hideAudio(state) {
+      state.audioShow = true
     }
   },
   actions: {
   },
   modules: {
+
   },
   getters: {
     playCount(state) {

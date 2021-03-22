@@ -7,7 +7,7 @@
           <img src="~assets/images/logotext.png" alt="MUSIC">
         </div>
       </nav-bar>
-      <keep-alive exclude="mvDetails,playlistDetails">
+      <keep-alive exclude="mvDetails,playlistDetails,search">
         <router-view></router-view>
       </keep-alive>
       <search-bar></search-bar>
@@ -22,12 +22,14 @@ import NavBar from "@/components/common/navbar/NavBar";
 import SearchBar from "@/components/content/SearchBar";
 import login from "@/components/common/login/login";
 import vuefooter from "@/components/common/footer/vuefooter";
+import vueAudio from "@/components/common/vueAudio";
 export default {
   name: 'app',
   components: {
     SearchBar,
     NavBar,
-    vuefooter
+    vuefooter,
+    vueAudio
   }
 }
 </script>

@@ -87,9 +87,8 @@
         })
       },
       getHotComment(id) {
-        return playlistAll(id).then(res => {
+        return playlistAll(id,6).then(res => {
           this.comments = res.data.hotComments
-          console.log(res);
         }).catch(err => {
           console.log(err);
         })
@@ -135,7 +134,6 @@
     display: inline-block;
     width: 950px;
   }
-
   .list-right{
     float: right;
     width: 380px;

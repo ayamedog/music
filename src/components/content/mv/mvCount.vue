@@ -56,6 +56,9 @@ export default {
   methods: {
     mvDetails(id) {
       this.$store.commit('mvidUpdate',id)
+      this.$store.commit('hideAudio')
+      let e = this.$store.state.audioEvent
+      e.pause()
       this.$router.push({
         path: '/mv-detail/url',
         query:{id: id}
@@ -100,13 +103,13 @@ export default {
 .mv-cont{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   width: 100%;
 }
 .mv-cont .mv-item{
   max-width: 24%;
   width: 24%;
   overflow: hidden;
+  margin-left: 11px;
   margin-bottom: 20px;
   position: relative;
   cursor: pointer;

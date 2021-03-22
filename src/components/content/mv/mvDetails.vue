@@ -42,6 +42,7 @@ export default {
   }
   .mv-left{
     width: 980px;
+    min-height: 1335px;
     padding: 15px;
     background: rgba(255,255,255,0.6);
     border-radius: 15px;

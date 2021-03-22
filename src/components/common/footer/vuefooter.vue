@@ -7,19 +7,40 @@
     </div>
     <div class="footer-bottom">
       <p class="bottom-text">by <a href="https://github.com/ayamedog/music">臭DD</a></p>
+      <vue-audio></vue-audio>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+import vueAudio from "@/components/common/vueAudio";
 export default {
-  name: "vuefooter"
+  name: "vuefooter",
+  data() {
+    return {
+
+    }
+  },
+  components: {
+    vueAudio
+  },
+  created() {
+    axios.post('http://localhost:3000/song/url',{
+      id: 33894312
+    }).then(res => {
+      console.log(res);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
 }
 </script>
 
 <style scoped>
   #footer{
     height: 250px;
+    min-width: 1380px;
     width: 100%;
     background: #161e27;
     position: relative;

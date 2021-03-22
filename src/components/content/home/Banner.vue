@@ -178,7 +178,7 @@ export default {
   width: 73px;
   position: absolute;
   top: 50%;
-  z-index: 15;
+
   transform: translateY(-50%);
   outline: none;
   border: none;

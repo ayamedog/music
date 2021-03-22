@@ -1,28 +1,51 @@
 <template>
   <div id="search-bar" @click="$store.commit('searchClick')" class="search-hide">
-    <div id="search-cont" @click="noBub($event)">
+    <div id="search-cont" >
       <div id="search-top">
         <div id="search-top-bg"></div>
       </div>
       <div id="search-top-cont">
-        <input type="text" placeholder="海阔天空">
-        <router-link to="/search" tag="button"><img src="~assets/images/Search.png" alt="">搜索</router-link>
+        <input type="text" placeholder="海阔天空" @click="noBub($event)" v-model="text">
+        <router-link :to="{path: '/search',query:{'keywords':text}}" tag="button" ><img src="~assets/images/Search.png" alt="" @click="$store.commit('searchClick')">搜索</router-link>
       </div>
-      <div id="search-bottom"></div>
-      <div class="close" @click="$store.commit('searchClick')"><img src="~assets/images/Close.png" alt=""></div>
+      <div id="search-bottom">
+        <h3><i class="fa fa-fire"></i>热门搜索</h3>
+        <ul>
+          <li v-for="(item, index) in hotKeywords" @click="keyClick(item.searchWord)">{{item.searchWord}}</li>
+        </ul>
+      </div>
+      <div class="close" @click="$store.commit('searchClick');noBub($event)"><img src="~assets/images/Close.png" alt=""></div>
     </div>
   </div>
 </template>
 
 <script>
+import {hotSearch} from "@/network/request";
+
 export default {
-name: "SearchBar",
+  created() {
+    hotSearch().then(res=> {
+      this.hotKeywords = res.data.data
+    })
+  },
+  name: "SearchBar",
+  data() {
+    return {
+      text: '',
+      hotKeywords: ''
+    }
+  },
   methods: {
     noBub(e) {
       e.stopPropagation();
     },
-
-  }
+    keyClick(keyword) {
+      this.$router.push({
+        path: '/search',
+        query:{keywords:keyword}
+      }).catch(err => err)
+    }
+  },
 }
 </script>
 
@@ -75,8 +98,12 @@ name: "SearchBar",
     box-sizing: border-box;
     filter: blur(4px);
   }
+
   #search-bottom{
+    overflow: hidden;
     position: absolute;
+    padding-left: 20px;
+    padding-top: 10px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -84,6 +111,24 @@ name: "SearchBar",
     height: 40%;
     background: #fff;
     border-radius: 0 0 5px 5px;
+  }
+  #search-bottom h3{
+    color: #e82c07;
+    margin-bottom: 10px;
+  }
+  #search-bottom ul{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #search-bottom ul li{
+    list-style: none;
+    color: #4a4a4a;
+    padding: 4px  10px;
+    background: #ababab;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    border-radius: 5px;
   }
   /*搜索详细内容*/
   #search-top-cont input{

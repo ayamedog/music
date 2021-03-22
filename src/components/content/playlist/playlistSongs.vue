@@ -1,5 +1,8 @@
 <template>
   <div class="details-songs">
+    <div class="song-play-box">
+      <h3 class="song-play" @click="getSongs"><img src="~assets/images/play.png">播放全部</h3>
+    </div>
     <ul>
       <li class="d-title">
         <span class="d-index"></span>
@@ -9,7 +12,7 @@
         <span class="d-dt">时长</span>
       </li>
       <li v-for="(item, index) in songs" class="d-cont">
-        <span class="index-cont"><span class="cont1">{{ index + 1 }}</span>
+        <span class="index-cont" @click="curSongs(index)"><span class="cont1">{{ index + 1 }}</span>
           <i class="fa fa-play-circle-o"></i>
         </span>
         <span class="name-cont">
@@ -52,10 +55,21 @@ export default {
       }
       return formatTime
     },
-
   },
   methods: {
-
+    getSongs() {
+      this.$store.commit('getSongs','')
+      this.$store.commit('getSongs',this.songs)
+      this.$store.commit('showAudio')
+      this.$store.commit('changeIndex')
+      console.log(this.$store.state.songs)
+    },
+    curSongs(i) {
+      this.$store.commit('getSongs','')
+      this.$store.commit('getSongs',this.songs)
+      this.$store.commit('getSongsIndex',i)
+      this.$store.commit('showAudio')
+    }
   }
 }
 </script>
@@ -135,5 +149,30 @@ export default {
     width: 70px;
   }
 
-
+  .song-play-box{
+    margin-bottom: 20px;
+    height: 41px;
+    position: relative;
+  }
+  .song-play{
+    text-align: center;
+    cursor: pointer;
+    text-indent: 15px;
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    right: 30px;
+    padding: 10px 20px;
+    width: 150px;
+    color: #fff;
+    background: #e82c07;
+  }
+  .song-play img{
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+  }
 </style>
