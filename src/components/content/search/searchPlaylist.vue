@@ -99,8 +99,10 @@ export default {
     margin-left: -13px;
   }
   .page{
-    margin: 0 auto;
-    margin-top: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -10px;
   }
   ::v-deep .playlist-cont{
     background: none;

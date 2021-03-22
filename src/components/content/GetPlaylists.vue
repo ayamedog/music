@@ -14,6 +14,8 @@
         </router-link>
       </div>
       <slot name="loading"></slot>
+    </div>
+    <div class="page-box">
       <slot name="page"></slot>
     </div>
   </div>
@@ -103,5 +105,9 @@ export default {
     -webkit-line-clamp: 2;
     -webkit-box-orient:vertical;
     font-weight: bold;
+  }
+  .page-box{
+    position: relative;
+    height: 32px;
   }
 </style>
