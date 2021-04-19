@@ -13,7 +13,8 @@ export default new Vuex.Store({
     songs: '', //获取歌曲
     curSongIndex: 0,//当前播放的歌曲index
     audioShow: true, //播放器是否显示,
-    audioEvent: ''
+    audioEvent: '',
+    isLogin: false
   },
   mutations: {
     searchClick(state) {
@@ -28,8 +29,6 @@ export default new Vuex.Store({
         searchCont.className= 'search-hide'
       }
     },
-
-
     mvidUpdate(state,mvid) {
       state.mvid = mvid
     },
@@ -65,6 +64,9 @@ export default new Vuex.Store({
     },
     hideAudio(state) {
       state.audioShow = true
+    },
+    changeLogin(state,bool) {
+      state.isLogin = bool
     }
   },
   actions: {

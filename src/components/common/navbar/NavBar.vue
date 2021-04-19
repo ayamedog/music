@@ -11,13 +11,14 @@
         <li><router-link to="/ranking" tag="a">排行榜</router-link></li>
         <li><router-link to="/playlist" tag="a">歌单</router-link></li>
         <li><router-link to="/mv" tag="a">M V</router-link></li>
-<!--        <li><router-link to="/my" tag="a" disabled="">我的音乐</router-link></li>-->
-        <li>我的音乐</li>
+        <li><router-link :to="$store.state.isLogin?'/my':'/login'" tag="a">我的音乐</router-link></li>
+        <!--<li>我的音乐</li>-->
       </ul>
       <!--搜索按钮和登录按钮-->
       <div class="nav-right">
         <input type="submit" name="search" value="" title="搜索" @click="$store.commit('searchClick')">
-        <router-link to="/login">登录</router-link>
+        <router-link to="/login" v-if="!$store.state.isLogin">登录</router-link>
+        <router-link to="/login" v-if="$store.state.isLogin"><span @click="myLogout">退出</span></router-link>
       </div>
    </div>
 
@@ -25,12 +26,31 @@
 </template>
 
 <script>
+import {logout} from "@/network/request";
 export default {
   name: "Navbar",
   data() {
     return {
       keyword: '',
       isActive: true
+    }
+  },
+  created() {
+    if(this.$cookies.isKey('MUSIC_U')){
+      this.$store.commit('changeLogin',true)
+    }else {
+      this.$store.commit('changeLogin',false)
+    }
+  },
+  methods: {
+    myLogout() {
+      logout().then(res=>{
+        console.log(res);
+       console.log('13ce66.');
+     })
+      this.$cookies.remove("MUSIC_U")
+      this.$store.commit('changeLogin',false)
+      this.$router.push('/login')
     }
   }
 }

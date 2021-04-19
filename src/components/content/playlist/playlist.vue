@@ -72,6 +72,7 @@ export default {
       }
     })
     .then( res => {
+      console.log(res);
       this.playlists = res.data.playlists
       this.page = Math.ceil( res.data.total / this.limit)
 

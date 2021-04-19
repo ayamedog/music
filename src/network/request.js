@@ -51,3 +51,18 @@ export const songLyric = id =>request.get('/lyric',{params:{id: id}})
 
 //排行榜 获取榜单
 export const ranking = (config) => request.get('/toplist/detail',config)
+
+//登录
+export const login = (data) => request.post('/login/cellphone',data)
+//验证手机号是否注册
+export const existence = (phone) => request.get('/cellphone/existence/check',{params:{phone:phone}})
+
+//登录之后
+//获取用户登录状态
+export const loginStatus = () => request.post('/login/status')
+//获取用户详情
+export const getUserDetail = (uid) => request.post('/user/detail',{uid: uid})
+//获取用户歌单
+export const userPlaylist = (uid) => request.post('/user/playlist',{uid: uid})
+//退出登录
+export const logout = () => request.post('/logout')

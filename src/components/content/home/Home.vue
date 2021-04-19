@@ -12,6 +12,7 @@ import Banner from "@/components/content/home/Banner";
 import RecoPlaylist from "@/components/content/home/RecoPlaylist";
 import mvCount from "@/components/content/mv/mvCount";
 import {recoMv} from "@/network/request";
+import axios from "axios";
 
 export default {
   name: "Home",
@@ -24,6 +25,7 @@ export default {
     recoMv()
     .then(res => {
       this.mvData = res.data.result
+      console.log(res);
     }).catch(err => {
       console.log(err);
     })

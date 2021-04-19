@@ -14,7 +14,7 @@ const search = () => import('@/components/content/search/search')
 const searchSongs = () => import('@/components/content/search/searchSongs')
 const searchPlaylist = () => import('@/components/content/search/searchPlaylist')
 const searchMv = () => import('@/components/content/search/searchMv')
-
+const my = () => import('@/components/content/my/my')
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +22,10 @@ const routes = [
     path:'',
     //redirect重定向
     redirect:'/home'
+  },
+  {
+    path: '/my',
+    component: my
   },
   {
     path: '/home',

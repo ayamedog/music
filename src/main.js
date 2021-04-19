@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 import './plugins/element.js'
 import 'font-awesome/css/font-awesome.min.css'
-
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
 
 
 Vue.config.productionTip = false

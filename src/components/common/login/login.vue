@@ -10,20 +10,74 @@
       <input type="password" class="user-pass" v-model="password" placeholder="请输入密码">
     </div>
     <div class="login-button">
-      <button>登录</button>
+      <!--<button @click="login" @keydown.enter="login">登录</button>-->
+      <input type="button" class="button" @click="login" @keydown.enter="login" value="登录">
     </div>
   </div>
 </div>
 </template>
 
 <script>
+import {login,existence} from "@/network/request";
 export default {
   name: "login",
   data() {
     return {
-      phone: '',
-      password: '',
+      phone: 16600202744,
+      password: '123ayame'
     }
+  },
+  methods: {
+    login() {
+      let phone = this.phone
+      let pass = this.password
+      //手机号验证是否正确
+      let reg_tel = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+      if(!reg_tel.test(phone)) {
+        alert('请输入正确手机号')
+        this.phone = ''
+        this.password = ''
+        return
+      }else if(pass === ''){
+        alert('请输入密码')
+        return
+      }
+      //监测手机号是否注册
+      existence(parseInt(phone)).then(res => {
+        if(res.data.exist !== 1) {
+          alert('当前手机号未被注册')
+          return
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+      //登录
+      let data = {phone: phone,password: pass}
+      login(data).then(res => {
+       if(res.data.code !== 200) {
+         alert('密码错误')
+         this.password = ''
+         return
+       }else{
+         console.log(res);
+         document.cookie = res.data.cookie
+         if(this.$cookies.isKey('MUSIC_U')){
+           this.$store.commit('changeLogin',true)
+         }else {
+           this.$store.commit('changeLogin',false)
+         }
+         this.$router.push('/my')
+       }
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+    // axios.post('http://localhost:3000/login/status',{
+    //   cookie: this.cookie
+    // }).then(res => {
+    //   console.log(this.cookie);
+    //   console.log(res);
+    // })
   }
 }
 </script>
@@ -95,7 +149,7 @@ export default {
     -moz-appearance: textfield;
   }
 
-  #login-cont .login-button button{
+  #login-cont .login-button .button{
     width: 290px;
     height: 40px;
     line-height: 40px;
@@ -108,7 +162,7 @@ export default {
     cursor: pointer;
     background: #0fbcf9;
   }
-  #login-cont .login-button button:hover{
+  #login-cont .login-button .button:hover{
     background: #00adff;
   }
 </style>
