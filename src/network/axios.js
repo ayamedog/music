@@ -2,6 +2,7 @@ import axios from "axios";
 
 // let BASE_URL = 'http://localhost:3000';
 axios.defaults.withCredentials=true
+//要把接口改成和域名一样的才能进行登录
 let BASE_URL = 'http://fbmio.com:3000';
 // let BASE_URL = 'https://nicemusic-api.lxhcool.cn/';
 // if (process.env.NODE_ENV === 'development') {
